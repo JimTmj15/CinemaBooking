@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">CinemaBooking</string>
+
+    <string name="genre_header">Genre</string>
+    <string name="language_header">Language</string>
+    <string name="duration_header">Duration</string>
+    <string name="synopsis_header">Synopsis</string>
+    <string name="book_btn">Book Now</string>
+</resources>
