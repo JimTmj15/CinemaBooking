@@ -37,6 +37,7 @@ class MovieDetailsViewModel  @ViewModelInject constructor(
                 is ApiResults.Success -> {
                     val res = transformedResult.data as NetworkMovieDetailsModel
                     val items = domainMapper.mapNetworkMovieDetailsToDomainModel(result = res)
+
                     mutableMovieDetails.postValue(ApiResults.Success(items))
                 }
                 is ApiResults.Failure -> {

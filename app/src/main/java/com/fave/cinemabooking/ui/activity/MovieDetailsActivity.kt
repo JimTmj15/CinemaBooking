@@ -6,7 +6,9 @@ import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
 import com.fave.cinemabooking.R
+import com.fave.cinemabooking.databinding.ActivityMovieDetailsBinding
 import com.fave.cinemabooking.models.domain_models.MovieDetailsDomainModel
 import com.fave.cinemabooking.utils.constant.Constants
 import com.fave.cinemabooking.utils.helpers.Helper
@@ -21,10 +23,14 @@ class MovieDetailsActivity : AppCompatActivity() {
 
     private var movieId = ""
     private val movieDetailsViewModel: MovieDetailsViewModel by viewModels()
+    lateinit var mBinding: ActivityMovieDetailsBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_movie_details)
+        val binding: ActivityMovieDetailsBinding = DataBindingUtil.setContentView(this, R.layout.activity_movie_details)
+
+        binding.lifecycleOwner = this
+        mBinding = binding
         subscribeToObserver() //set up observer for live data
         intent.getStringExtra(Constants.INTENT_MOVIE_ID.key)?.let {
             movieId = it
@@ -35,9 +41,11 @@ class MovieDetailsActivity : AppCompatActivity() {
             synopsisTv.text = it
         }
 
-        bookBtn.setOnClickListener {
-            val browserIntent = Intent(Intent.ACTION_VIEW,
-                Uri.parse(Constants.CINEMA_URL.key))
+        binding.bookBtn.setOnClickListener {
+            val browserIntent = Intent(
+                Intent.ACTION_VIEW,
+                Uri.parse(Constants.CINEMA_URL.key)
+            )
             startActivity(browserIntent)
         }
     }
@@ -51,10 +59,7 @@ class MovieDetailsActivity : AppCompatActivity() {
                 is ApiResults.Success -> {
                     progressBar.visibility = View.GONE
                     val result = it.data as MovieDetailsDomainModel
-                    languageTv.text = result.language
-                    genreTv.text = result.genre
-                    val duration = result.duration + " minutes"
-                    durationTv.text = duration
+                    mBinding.movieDetailsDomainModel = result
                 }
                 is ApiResults.Failure -> {
                     progressBar.visibility = View.GONE

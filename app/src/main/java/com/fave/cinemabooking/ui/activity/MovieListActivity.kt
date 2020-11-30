@@ -4,10 +4,13 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.lifecycleScope
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.fave.cinemabooking.R
+import com.fave.cinemabooking.databinding.ActivityMovieDetailsBinding
+import com.fave.cinemabooking.databinding.ActivityMovieListBinding
 import com.fave.cinemabooking.models.domain_models.MovieListDomainModel
 import com.fave.cinemabooking.utils.adapters.PagingAdapter
 import com.fave.cinemabooking.utils.constant.Constants
@@ -23,10 +26,15 @@ class MovieListActivity : AppCompatActivity() {
 
     private val movieListViewModel: MovieListViewModel by viewModels()
     lateinit var pagingAdapter: PagingAdapter
+    lateinit var mBinding: ActivityMovieListBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_movie_list)
+        val binding: ActivityMovieListBinding =
+            DataBindingUtil.setContentView(this, R.layout.activity_movie_list)
+
+        binding.lifecycleOwner = this
+        mBinding = binding
         initialise()
         getMovieList()
 
@@ -69,7 +77,7 @@ class MovieListActivity : AppCompatActivity() {
             gotoMovieDetails(result.id, result.synopsis)
         }
 
-        moviesRv.apply {
+        mBinding.moviesRv.apply {
             layoutManager = LinearLayoutManager(this@MovieListActivity)
             adapter = pagingAdapter
         }

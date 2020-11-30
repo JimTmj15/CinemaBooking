@@ -1,180 +1,200 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.activity.MovieDetailsActivity">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <ProgressBar
-        android:id="@+id/progressBar"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:visibility="gone"/>
+    <data>
 
-    <TextView
-        android:id="@+id/genreHeader"
+        <variable
+            name="movieDetailsDomainModel"
+            type="com.fave.cinemabooking.models.domain_models.MovieDetailsDomainModel" />
+    </data>
+
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="25dp"
-        android:autoSizeTextType="uniform"
-        android:autoSizeMinTextSize="17sp"
-        android:autoSizeMaxTextSize="19sp"
-        android:textStyle="bold"
-        android:text="@string/genre_header"
-        android:paddingStart="10dp"
-        android:paddingEnd="10dp"
-        tools:ignore="MissingConstraints" />
+        android:layout_height="match_parent"
+        android:fillViewport="true">
 
-    <TextView
-        android:id="@+id/genreTv"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:autoSizeTextType="uniform"
-        android:autoSizeMinTextSize="13sp"
-        android:autoSizeMaxTextSize="14sp"
-        android:paddingTop="10dp"
-        android:paddingStart="10dp"
-        android:paddingEnd="10dp"
-        tools:ignore="MissingConstraints"/>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:context=".ui.activity.MovieDetailsActivity">
 
-    <androidx.constraintlayout.helper.widget.Flow
-        android:id="@+id/genreLayout"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:flow_maxElementsWrap="1"
-        android:layout_margin="10dp"
-        app:flow_wrapMode="aligned"
-        app:constraint_referenced_ids="genreHeader, genreTv"/>
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/languageHeader"
-        android:layout_width="match_parent"
-        android:layout_height="25dp"
-        android:autoSizeTextType="uniform"
-        android:autoSizeMinTextSize="17sp"
-        android:autoSizeMaxTextSize="19sp"
-        android:text="@string/language_header"
-        android:paddingStart="10dp"
-        android:paddingEnd="10dp"
-        android:textStyle="bold"
-        tools:ignore="MissingConstraints" />
+            <TextView
+                android:id="@+id/genreHeader"
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:autoSizeMaxTextSize="19sp"
+                android:autoSizeMinTextSize="17sp"
+                android:autoSizeTextType="uniform"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:text="@string/genre_header"
+                android:textStyle="bold"
+                tools:ignore="MissingConstraints" />
 
-    <TextView
-        android:id="@+id/languageTv"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:autoSizeTextType="uniform"
-        android:autoSizeMinTextSize="13sp"
-        android:autoSizeMaxTextSize="14sp"
-        android:paddingTop="10dp"
-        android:paddingStart="10dp"
-        android:paddingEnd="10dp"
-        tools:ignore="MissingConstraints"/>
+            <TextView
+                android:id="@+id/genreTv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autoSizeMaxTextSize="14sp"
+                android:autoSizeMinTextSize="13sp"
+                android:autoSizeTextType="uniform"
+                android:paddingStart="10dp"
+                android:paddingTop="10dp"
+                android:paddingEnd="10dp"
+                android:text="@{movieDetailsDomainModel.genre}"
+                tools:ignore="MissingConstraints" />
 
-    <androidx.constraintlayout.helper.widget.Flow
-        android:id="@+id/languageLayout"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/genreLayout"
-        app:flow_maxElementsWrap="1"
-        android:layout_margin="10dp"
-        app:flow_wrapMode="aligned"
-        app:constraint_referenced_ids="languageHeader, languageTv"/>
+            <androidx.constraintlayout.helper.widget.Flow
+                android:id="@+id/genreLayout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                app:constraint_referenced_ids="genreHeader, genreTv"
+                app:flow_maxElementsWrap="1"
+                app:flow_wrapMode="aligned"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/durationHeader"
-        android:layout_width="match_parent"
-        android:layout_height="25dp"
-        android:autoSizeTextType="uniform"
-        android:autoSizeMinTextSize="17sp"
-        android:autoSizeMaxTextSize="19sp"
-        android:text="@string/duration_header"
-        android:paddingStart="10dp"
-        android:paddingEnd="10dp"
-        android:textStyle="bold"
-        tools:ignore="MissingConstraints" />
+            <TextView
+                android:id="@+id/languageHeader"
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:autoSizeMaxTextSize="19sp"
+                android:autoSizeMinTextSize="17sp"
+                android:autoSizeTextType="uniform"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:text="@string/language_header"
+                android:textStyle="bold"
+                tools:ignore="MissingConstraints" />
 
-    <TextView
-        android:id="@+id/durationTv"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:autoSizeTextType="uniform"
-        android:autoSizeMinTextSize="13sp"
-        android:autoSizeMaxTextSize="14sp"
-        android:paddingStart="10dp"
-        android:paddingEnd="10dp"
-        android:paddingTop="10dp"
-        tools:ignore="MissingConstraints"/>
+            <TextView
+                android:id="@+id/languageTv"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:autoSizeMaxTextSize="14sp"
+                android:autoSizeMinTextSize="13sp"
+                android:autoSizeTextType="uniform"
+                android:paddingStart="10dp"
+                android:paddingTop="10dp"
+                android:paddingEnd="10dp"
+                android:text="@{movieDetailsDomainModel.language}"
+                tools:ignore="MissingConstraints" />
 
-    <androidx.constraintlayout.helper.widget.Flow
-        android:id="@+id/durationLayout"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/languageLayout"
-        app:flow_maxElementsWrap="1"
-        android:layout_margin="10dp"
-        app:flow_wrapMode="aligned"
-        app:constraint_referenced_ids="durationHeader, durationTv"/>
+            <androidx.constraintlayout.helper.widget.Flow
+                android:id="@+id/languageLayout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                app:constraint_referenced_ids="languageHeader, languageTv"
+                app:flow_maxElementsWrap="1"
+                app:flow_wrapMode="aligned"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/genreLayout" />
 
-    <TextView
-        android:id="@+id/synopsisHeader"
-        android:layout_width="match_parent"
-        android:layout_height="25dp"
-        android:autoSizeTextType="uniform"
-        android:autoSizeMinTextSize="17sp"
-        android:autoSizeMaxTextSize="19sp"
-        android:text="@string/synopsis_header"
-        android:paddingStart="10dp"
-        android:paddingEnd="10dp"
-        android:textStyle="bold"
-        tools:ignore="MissingConstraints" />
+            <TextView
+                android:id="@+id/durationHeader"
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:autoSizeMaxTextSize="19sp"
+                android:autoSizeMinTextSize="17sp"
+                android:autoSizeTextType="uniform"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:text="@string/duration_header"
+                android:textStyle="bold"
+                tools:ignore="MissingConstraints" />
 
-    <TextView
-        android:id="@+id/synopsisTv"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:autoSizeTextType="uniform"
-        android:autoSizeMinTextSize="13sp"
-        android:autoSizeMaxTextSize="14sp"
-        android:paddingStart="10dp"
-        android:paddingEnd="10dp"
-        android:paddingTop="10dp"
-        tools:ignore="MissingConstraints"/>
+            <TextView
+                android:id="@+id/durationTv"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:autoSizeMaxTextSize="14sp"
+                android:autoSizeMinTextSize="13sp"
+                android:autoSizeTextType="uniform"
+                android:paddingStart="10dp"
+                android:paddingTop="10dp"
+                android:paddingEnd="10dp"
+                android:text="@{movieDetailsDomainModel.duration + ` minutes`}"
+                tools:ignore="MissingConstraints" />
 
-    <androidx.constraintlayout.helper.widget.Flow
-        android:id="@+id/synopsisLayout"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/durationLayout"
-        app:flow_maxElementsWrap="1"
-        android:layout_margin="10dp"
-        app:flow_wrapMode="aligned"
-        app:constraint_referenced_ids="synopsisHeader, synopsisTv"/>
+            <androidx.constraintlayout.helper.widget.Flow
+                android:id="@+id/durationLayout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                app:constraint_referenced_ids="durationHeader, durationTv"
+                app:flow_maxElementsWrap="1"
+                app:flow_wrapMode="aligned"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/languageLayout" />
 
-    <Button
-        android:id="@+id/bookBtn"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/synopsisTv"
-        android:layout_marginTop="20dp"
-        android:background="@color/colorPrimary"
-        android:textColor="@android:color/white"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:text="@string/book_btn"/>
-</androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:id="@+id/synopsisHeader"
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:autoSizeMaxTextSize="19sp"
+                android:autoSizeMinTextSize="17sp"
+                android:autoSizeTextType="uniform"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:text="@string/synopsis_header"
+                android:textStyle="bold"
+                tools:ignore="MissingConstraints" />
+
+            <TextView
+                android:id="@+id/synopsisTv"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:autoSizeMaxTextSize="14sp"
+                android:autoSizeMinTextSize="13sp"
+                android:autoSizeTextType="uniform"
+                android:paddingStart="10dp"
+                android:paddingTop="10dp"
+                android:paddingEnd="10dp"
+                tools:ignore="MissingConstraints" />
+
+            <androidx.constraintlayout.helper.widget.Flow
+                android:id="@+id/synopsisLayout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                app:constraint_referenced_ids="synopsisHeader, synopsisTv"
+                app:flow_maxElementsWrap="1"
+                app:flow_wrapMode="aligned"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/durationLayout" />
+
+            <Button
+                android:id="@+id/bookBtn"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="10dp"
+                android:background="@color/colorPrimary"
+                android:text="@string/book_btn"
+                android:textColor="@android:color/white"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/synopsisTv" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</layout>
