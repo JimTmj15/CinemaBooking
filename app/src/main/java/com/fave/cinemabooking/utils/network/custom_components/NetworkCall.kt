@@ -101,7 +101,7 @@ class NetworkCall<S : Any, E : Any>(
     override fun cancel() = delegate.cancel()
 
     //override function method by retrofit
-    override fun execute(): Response<NetworkResponse<S, E>> {
+    override fun execute(): Response<NetworkResponse<S, E>>  {
         throw UnsupportedOperationException("Doesn't support execute operation")
     }
 

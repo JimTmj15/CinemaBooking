@@ -21,11 +21,12 @@ class Repository @Inject constructor(
     private val apiHelper: ApiHelper
 ) {
 
-
-    suspend fun getMovieList(apiKey:String,
-                             releaseDate: String,
-                             sortBy: String,
-                             page: String): NetworkResponse<NetworkMovieListModel, Error> =
+    suspend fun getMovieList(
+        apiKey: String,
+        releaseDate: String,
+        sortBy: String,
+        page: String
+    ): NetworkResponse<NetworkMovieListModel, Error> =
         apiHelper.getMovieList(apiKey, releaseDate, sortBy, page)
 
     suspend fun getMovieDetails(

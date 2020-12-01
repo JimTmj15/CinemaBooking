@@ -36,60 +36,9 @@ class ExampleUnitTest {
 
     @Before
     fun setup() {
-//        mockWebServer.start()
-//
-//        val moshi = Moshi.Builder()
-//            .add(KotlinJsonAdapterFactory())
-//            .build()
-//
-//        val loggingInterceptor = HttpLoggingInterceptor()
-//        loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY)
-//        val okHttpClient = OkHttpClient.Builder()
-//            .addInterceptor(loggingInterceptor)
-//            .connectTimeout(10, TimeUnit.SECONDS)
-//            .readTimeout(10, TimeUnit.SECONDS)
-//            .writeTimeout(10, TimeUnit.SECONDS)
-//            .build()
-//
-//        val retrofit = Retrofit
-//            .Builder()
-//            .baseUrl(mockWebServer.url("/"))
-//            .addConverterFactory(MoshiConverterFactory.create(moshi))
-//            .addCallAdapterFactory(NetworkResponseAdapterFactory())
-//            .client(okHttpClient)
-//            .build()
-//
-//        val apiService = retrofit.create(ApiService::class.java)
-//        val apiHelperImpl = ApiHelperImpl(apiService = apiService)
-//        repository = Repository(apiHelperImpl)
     }
 
     @After
     fun teardown() {
-//        mockWebServer.shutdown()
-    }
-
-    @Test
-    fun testApiCall() {
-//        runBlocking {
-
-//            val dispatcher: Dispatcher = object : Dispatcher() {
-//                override fun dispatch(request: RecordedRequest): MockResponse {
-//                    when (request.path) {
-//                        "/v1/path1"
-//                        -> return MockResponse().setResponseCode(204)
-//                        "/v1/path2"
-//                        -> return  MockResponse()
-//                            .setResponseCode(HttpURLConnection.HTTP_OK)
-//                            .setBody("{ result: \"success\" }")
-//                    }
-//                    return MockResponse().setResponseCode(404)
-//                }
-//            }
-//
-//            mockWebServer.dispatcher = dispatcher
-//            val request: RecordedRequest = mockWebServer.takeRequest()
-//            assertEquals(expectedPath, request.path)
-//        }
     }
 }

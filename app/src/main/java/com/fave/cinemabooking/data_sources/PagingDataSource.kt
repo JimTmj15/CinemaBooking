@@ -3,16 +3,18 @@ package com.fave.cinemabooking.data_sources
 import androidx.paging.PagingSource
 import com.fave.cinemabooking.models.domain_models.MovieListDomainModel
 import com.fave.cinemabooking.models.network.models.movie_list.NetworkMovieListModel
-import com.fave.cinemabooking.models.others.Data
 import com.fave.cinemabooking.utils.constant.Constants
-import com.fave.cinemabooking.utils.repository.Repository
-import com.fave.cinemabooking.utils.di.qualifiers.ApiKey
 import com.fave.cinemabooking.utils.helpers.Helper
 import com.fave.cinemabooking.utils.mapper.DomainMapper
 import com.fave.cinemabooking.utils.network.responses.ApiResults
+import com.fave.cinemabooking.utils.repository.Repository
 import retrofit2.HttpException
 import java.io.IOException
 
+/**
+ * This class functions to gather data from the API calls based on the
+ * loading key
+ */
 class PagingDataSource constructor(private val repository: Repository,
                                    private val domainMapper: DomainMapper):
     PagingSource<Int, MovieListDomainModel>() {
@@ -31,10 +33,13 @@ class PagingDataSource constructor(private val repository: Repository,
                 page = curLoadingKey.toString())
 
             var responseData:MutableList<MovieListDomainModel> = mutableListOf()
+
+            //the dataTransformed helps to map Network Response into Api Result - Success/Failure
             when(val transformedResult = Helper.dataTransformer(result = result)){
                 is ApiResults.Success -> {
                     val res = transformedResult.data as NetworkMovieListModel
                     totalPage = res.total_pages
+                    //the domain mapper maps the data into domain model (data required for display)
                     val items = domainMapper.mapNetworkMovieListToDomainModel(result = res)
                     responseData = items
                 }

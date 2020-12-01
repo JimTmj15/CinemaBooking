@@ -1,5 +1,6 @@
 package com.fave.cinemabooking.utils.constant
 
+//define all the necessary information required for the app
 enum class Constants(val key:String) {
     CINEMA_URL("https://www.cathaycineplexes.com.sg/"),
 

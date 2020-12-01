@@ -11,12 +11,17 @@ import com.fave.cinemabooking.R
 import com.fave.cinemabooking.databinding.MovieViewHolderBinding
 import com.fave.cinemabooking.models.domain_models.MovieListDomainModel
 
+/*
+* This is adapter class for paging which to load more data when
+* user scrolls down the recycler view list
+*/
 class PagingAdapter(onRecyclerViewItemClickListener: (position: Int, item: Any) -> Unit) :
     PagingDataAdapter<MovieListDomainModel, PagingAdapter.ViewHolder>(DataDifferentiator) {
 
 
     private var _onRecyclerViewItemClickListener:
                 (position: Int, item: Any) -> Unit = onRecyclerViewItemClickListener
+
 
     class ViewHolder(val binding: MovieViewHolderBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: MovieListDomainModel) {
@@ -30,6 +35,7 @@ class PagingAdapter(onRecyclerViewItemClickListener: (position: Int, item: Any) 
         }
     }
 
+    //utilize diff utils to refresh only the updated item
     object DataDifferentiator : DiffUtil.ItemCallback<MovieListDomainModel>() {
         override fun areItemsTheSame(
             oldItem: MovieListDomainModel,
@@ -54,19 +60,6 @@ class PagingAdapter(onRecyclerViewItemClickListener: (position: Int, item: Any) 
                 getItem(position)?.let { item -> _onRecyclerViewItemClickListener(position, item) }
             }
         }
-//        val movieData = getItem(position)
-//        movieData?.let {
-//            holder.itemView.movieTitle.text = it.movieTitle
-//            holder.itemView.movieRating.text = it.moviePopularity
-//            val imgUrl = "https://image.tmdb.org/t/p/w500/${it.imgUrl}"
-//            holder.itemView.movieImg.load(imgUrl) {
-//                crossfade(true)
-//                error(R.mipmap.ic_launcher)
-//            }
-//            holder.itemView.setOnClickListener {
-//                getItem(position)?.let { item -> _onRecyclerViewItemClickListener(position, item) }
-//            }
-//        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -76,8 +69,5 @@ class PagingAdapter(onRecyclerViewItemClickListener: (position: Int, item: Any) 
             false
         )
         return ViewHolder(binding)
-//        return ViewHolder(
-//            LayoutInflater.from(parent.context)
-//                .inflate(R.layout.movie_view_holder, parent, false))
     }
 }

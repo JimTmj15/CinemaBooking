@@ -21,6 +21,14 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
+/*
+* All the required instances will be defined here:
+* 1. Okhttp3
+* 2. Retrofit
+* 3. Moshi
+* 4. Api Service
+* 5. Api Helper
+*/
 @Module
 @InstallIn(ApplicationComponent::class)
 class CinemaModule {

@@ -4,7 +4,6 @@ import com.fave.cinemabooking.models.domain_models.MovieDetailsDomainModel
 import com.fave.cinemabooking.models.domain_models.MovieListDomainModel
 import com.fave.cinemabooking.models.network.models.movie_details.NetworkMovieDetailsModel
 import com.fave.cinemabooking.models.network.models.movie_list.NetworkMovieListModel
-import com.fave.cinemabooking.models.others.Data
 import com.fave.cinemabooking.utils.extensions.to2DecimalPoints
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.coroutineScope
@@ -58,7 +57,7 @@ class DomainMapper @Inject constructor() {
                 }
 
                 if(genre.isEmpty()) {
-                    genre = "Nil"
+                    genre = "Nil" //if genre is empty, show Nil
                 }
                 MovieDetailsDomainModel(
                     genre = genre,

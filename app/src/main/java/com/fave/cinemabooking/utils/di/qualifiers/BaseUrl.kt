@@ -3,7 +3,7 @@ package com.fave.cinemabooking.utils.di.qualifiers
 import javax.inject.Qualifier
 
 /*
-* Self defined params to use everywhere in the codes.
+* Self defined annotation
 */
 @Qualifier
 @Retention(AnnotationRetention.BINARY)

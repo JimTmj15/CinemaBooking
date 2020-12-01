@@ -2,6 +2,7 @@ package com.fave.cinemabooking.ui.activity
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -9,7 +10,6 @@ import androidx.lifecycle.lifecycleScope
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.fave.cinemabooking.R
-import com.fave.cinemabooking.databinding.ActivityMovieDetailsBinding
 import com.fave.cinemabooking.databinding.ActivityMovieListBinding
 import com.fave.cinemabooking.models.domain_models.MovieListDomainModel
 import com.fave.cinemabooking.utils.adapters.PagingAdapter
@@ -25,8 +25,8 @@ import kotlinx.coroutines.launch
 class MovieListActivity : AppCompatActivity() {
 
     private val movieListViewModel: MovieListViewModel by viewModels()
-    lateinit var pagingAdapter: PagingAdapter
-    lateinit var mBinding: ActivityMovieListBinding
+    private lateinit var pagingAdapter: PagingAdapter
+    private lateinit var mBinding: ActivityMovieListBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,10 +43,10 @@ class MovieListActivity : AppCompatActivity() {
                 loadState.append is LoadState.Loading
             )
             // Show ProgressBar
-//            loader.show(this@MovieListActivity)
+            binding.loader.visibility = View.VISIBLE
             else {
                 // Hide ProgressBar
-//                loader.dismiss()
+                binding.loader.visibility = View.GONE
                 // If we have an error, show a toast
                 val errorState = when {
                     loadState.append is LoadState.Error -> loadState.append as LoadState.Error
@@ -84,6 +84,7 @@ class MovieListActivity : AppCompatActivity() {
     }
 
     private fun getMovieList() {
+        //collect the data returned from API and append to the current data list
         lifecycleScope.launch {
             movieListViewModel.movieListData().collect {
                 pagingAdapter.submitData(it)

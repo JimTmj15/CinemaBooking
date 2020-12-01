@@ -11,7 +11,6 @@ import retrofit2.http.Query
 /*
 * Define all the API endpoints. Standardise network response with success/error
 */
-
 interface ApiService {
 
     @GET("/3/discover/movie")

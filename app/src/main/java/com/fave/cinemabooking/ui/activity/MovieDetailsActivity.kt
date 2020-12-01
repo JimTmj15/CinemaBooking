@@ -32,16 +32,20 @@ class MovieDetailsActivity : AppCompatActivity() {
         binding.lifecycleOwner = this
         mBinding = binding
         subscribeToObserver() //set up observer for live data
+
+        //to get movie id from prev activity
         intent.getStringExtra(Constants.INTENT_MOVIE_ID.key)?.let {
             movieId = it
             movieDetailsViewModel.getMovieDetails(movieId)
         }
 
+        //get synopsis from prev activity
         intent.getStringExtra(Constants.INTENT_SYNOPSIS.key)?.let {
             synopsisTv.text = it
         }
 
         binding.bookBtn.setOnClickListener {
+            //to open URL from browser externally
             val browserIntent = Intent(
                 Intent.ACTION_VIEW,
                 Uri.parse(Constants.CINEMA_URL.key)

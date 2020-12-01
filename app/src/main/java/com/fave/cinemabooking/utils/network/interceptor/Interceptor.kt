@@ -16,7 +16,6 @@ import javax.inject.Singleton
 *
 * This class as a singleton instance for okhttp client to intercept.
 */
-
 @Singleton
 class Interceptor @Inject constructor(@ApplicationContext private val context: Context) :
     Interceptor {

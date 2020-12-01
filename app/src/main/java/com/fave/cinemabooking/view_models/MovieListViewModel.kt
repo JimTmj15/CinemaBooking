@@ -9,9 +9,8 @@ import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import com.fave.cinemabooking.data_sources.PagingDataSource
 import com.fave.cinemabooking.models.domain_models.MovieListDomainModel
-import com.fave.cinemabooking.models.others.Data
-import com.fave.cinemabooking.utils.repository.Repository
 import com.fave.cinemabooking.utils.mapper.DomainMapper
+import com.fave.cinemabooking.utils.repository.Repository
 import kotlinx.coroutines.flow.Flow
 
 class MovieListViewModel @ViewModelInject constructor(

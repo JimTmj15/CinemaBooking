@@ -9,7 +9,6 @@ import java.lang.reflect.Type
 /*
 * This class functions to adapt {@code S} to our custom network call with Success & Error as response
 */
-
 class NetworkCallAdapter<S : Any, E : Any>(
     private val respType: Type,
     private val errorConverter: Converter<ResponseBody, E>

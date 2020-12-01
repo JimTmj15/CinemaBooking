@@ -4,7 +4,8 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 class ApiResponse {
-    /*
+
+/*
  * Standardised API response handling: Success/Error
  *
  * Success case:
@@ -14,7 +15,6 @@ class ApiResponse {
  * 1. message
  * 2. status
  */
-
     @JsonClass(generateAdapter = true)
     data class Success(
         @Json(name = "data")

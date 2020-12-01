@@ -21,20 +21,21 @@ class NetworkResponseAdapterFactory: CallAdapter.Factory() {
         retrofit: Retrofit
     ): CallAdapter<*, *>? {
 
-        // suspend functions wrap the response type in `Call`
+        // suspend functions wrap the response type in Call
         if (Call::class.java != getRawType(returnType)) {
             return null
         }
 
-        /* check first that the return type is `ParameterizedType`
-        *  The parameterized type (from Generic type) must be equivalent to
-        *  our defined NetworkResponse<Success, Error>
+        /*
+        * check first that the return type is ParameterizedType
+        * The parameterized type (from Generic type) must be equivalent to
+        * our defined NetworkResponse<Success, Error>
         */
         check(returnType is ParameterizedType) {
             "return type must be parameterized as Call<NetworkResponse<Success, Error> or Call<NetworkResponse<out Success, out Error>>"
         }
 
-        // get the response type inside the `Call` type
+        // get the response type inside the Call type
         val responseType = getParameterUpperBound(0, returnType)
         // if the response type is not NetworkResponse then we can't handle this type, so we return null
         if (getRawType(responseType) != NetworkResponse::class.java) {

@@ -5,11 +5,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import androidx.paging.PagingSource
 import com.fave.cinemabooking.models.network.models.movie_details.NetworkMovieDetailsModel
-import com.fave.cinemabooking.models.network.models.movie_list.NetworkMovieListModel
 import com.fave.cinemabooking.utils.constant.Constants
-import com.fave.cinemabooking.utils.di.qualifiers.ApiKey
 import com.fave.cinemabooking.utils.helpers.Helper
 import com.fave.cinemabooking.utils.mapper.DomainMapper
 import com.fave.cinemabooking.utils.network.responses.ApiResults

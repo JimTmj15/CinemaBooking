@@ -9,7 +9,6 @@ import javax.inject.Inject
 /*
 * This is the implementation class for Api Helper interface which required for DI purpose.
 */
-
 class ApiHelperImpl @Inject constructor(private val apiService: ApiService): ApiHelper {
 
     override suspend fun getMovieList(apiKey:String,
